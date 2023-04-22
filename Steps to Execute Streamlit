@@ -1,0 +1,3 @@
+In reprository we have Main code which includes the entire code.
+Use VS code to execute the Maincode and create a Local Host for User Interface 
+the select your dataset into streamlit UI and ypu can check the results of three machine learning models.
