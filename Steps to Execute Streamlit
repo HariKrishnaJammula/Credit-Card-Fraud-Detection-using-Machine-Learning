@@ -1,3 +1,7 @@
 In reprository we have Main code which includes the entire code.
-Use VS code to execute the Maincode and create a Local Host for User Interface 
-the select your dataset into streamlit UI and ypu can check the results of three machine learning models.
+Use VS code to execute the Maincode and create a Local Host for Streamlit User Interface
+Creating a Local Host use command :
+                                      streamlit run filename.py --server.port 5998
+                                      (server port can be 8080 or 5998)
+It will automaticlly directs you to streamlit web page.
+then select your dataset into streamlit UI and ypu can check the results of three machine learning models.
