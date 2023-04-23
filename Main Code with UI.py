@@ -117,8 +117,38 @@ if uploaded_file is not None:
 # Display the figure using Streamlit
     st.pyplot(plt)
 
-     
-    st.title("Fraud Detection App")
+    def plot_categorical_vars(data, cat_vars):
+    # set plot style
+        sns.set_style("whitegrid")
+
+    # set up figure and axis objects
+        fig, axs = plt.subplots(len(cat_vars), 2, figsize=(10, 4 * len(cat_vars)))
+    
+    # set up colors and explode values for the pie charts
+        colors = ["#66b3ff", "#ffcc99"]
+        explode = (0, 0.1)
+
+    # create pie chart
+        pie_data = data[cat_vars].apply(pd.Series.value_counts)
+        for i, var in enumerate(cat_vars):
+            axs[i, 0].pie(pie_data[var], labels=pie_data[var].index, autopct="%.2f%%", colors=colors, explode=explode)
+            axs[i, 0].set_title(f"Distribution of {var}", fontsize=10)
+
+        # create bar plot
+            sns.countplot(x=var, data=data, ax=axs[i, 1])
+            axs[i, 1].set_title(f"Count of {var} by Class", fontsize=10)
+            axs[i, 1].set_xlabel(var, fontsize=16)
+            axs[i, 1].set_ylabel("Count", fontsize=16)
+
+        plt.tight_layout()
+        st.pyplot(fig)
+
+    cat_vars = ["repeat_retailer", "used_chip", "used_pin_number", "online_order"]
+
+    st.title("Categorical Variables Plot")
+    plot_categorical_vars(data, cat_vars)
+
+
 
     # Define the feature columns and target variable
     feature_columns = ["distance_from_home", "distance_from_last_transaction",
@@ -190,8 +220,6 @@ if uploaded_file is not None:
     st.subheader("Classification Report")
     report = metrics.classification_report(y_test, y_pred, digits=6)
     st.code(report, language="text")
-
-
 
 
 # Create a Random Forest Classifier and fit it to the training data
