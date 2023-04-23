@@ -2,6 +2,14 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn import metrics
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+from sklearn.ensemble import RandomForestClassifier
+
 
 # Title of the app
 st.title("Credit Card Fraud Detection Using Machine Learning Algorithms")
@@ -110,10 +118,6 @@ if uploaded_file is not None:
     st.pyplot(plt)
 
      
-    import streamlit as st
-    from sklearn.model_selection import train_test_split
-
-
     st.title("Fraud Detection App")
 
     # Define the feature columns and target variable
@@ -145,9 +149,7 @@ if uploaded_file is not None:
     st.write("y_test:", y_test.shape)
 
 
-    import streamlit as st
-    from sklearn.linear_model import LogisticRegression
-    from sklearn import metrics
+
 
     # Create a logistic regression model and fit it to the training data
     logreg = LogisticRegression(max_iter=200)
@@ -168,9 +170,7 @@ if uploaded_file is not None:
     report = metrics.classification_report(y_test, y_pred, digits=6)
     st.code(report, language="text")
 
-    import streamlit as st
-    from sklearn.tree import DecisionTreeClassifier
-    from sklearn import metrics
+
 
     # Create a decision tree model and fit it to the training data
     decision_tree = DecisionTreeClassifier()
@@ -192,15 +192,7 @@ if uploaded_file is not None:
     st.code(report, language="text")
 
 
-    import streamlit as st
-    from sklearn.ensemble import RandomForestClassifier
-    from sklearn import metrics
-    from sklearn.metrics import classification_report
 
-
-    import streamlit as st
-    from sklearn.ensemble import RandomForestClassifier
-    from sklearn import metrics
 
 # Create a Random Forest Classifier and fit it to the training data
     rfc = RandomForestClassifier(n_estimators=100)
